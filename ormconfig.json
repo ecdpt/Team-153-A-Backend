@@ -1,0 +1,13 @@
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "newuser",
+    "password": "welcome123.",
+    "database": "hrms_project",
+    "entities": [ 
+      "dist/**/*.js"
+      
+    ],
+    "synchronize": true
+  }
