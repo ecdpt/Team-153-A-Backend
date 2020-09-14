@@ -25,7 +25,7 @@ class ConfigService {
   }
 
   public isProduction() {
-    const mode = this.getValue('MODE', false);
+    const mode = this.getValue('NODE_ENV', false);
     return mode != 'DEV';
   }
 
