@@ -22,4 +22,5 @@ POSTGRES_DATABASE=my_database
 PORT=3000
 MODE=DEV
 RUN_MIGRATIONS=true
+https://be-hrms-backend.herokuapp.com
 */
