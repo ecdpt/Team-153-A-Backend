@@ -4,8 +4,8 @@ import { AuthModule }  from '../auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersService } from './users.service';
 import { UserResolver } from './users.resolvers';
-import { User } from './models/user.model';
-import { Address } from './models/address.model';
+import { User } from '../model/user.entity';
+import { Address } from '../model/address.entity';
 import { JwtStrategy } from '../auth/jwt.strategy';
 
 @Module({

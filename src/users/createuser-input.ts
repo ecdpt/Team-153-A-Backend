@@ -1,8 +1,8 @@
 import { IsEmail, MinLength } from 'class-validator';
 import { InputType, Field } from '@nestjs/graphql';
-import { User }    from './models/user.model';
-import { Address } from './models/address.model';
-import { UserRole } from './models/user.model'
+import { User }    from '../model/user.entity';
+import { Address } from '../model/address.entity';
+import { UserRole } from '../model/user.entity'
 
 import { deserializeUser } from 'passport';
 
@@ -12,28 +12,28 @@ export class AddressInput{
   @Field()
   id:   string;
   
-  @Field(type => Number)
-  houseNo?:   number
+ /* @Field(type => Number, {nullable: true})
+  houseno?:   number*/
 
   @Field()
-  street1?:   string
+  street1:   string
   
-  @Field()
+  @Field({nullable: true})
   street2?:   string
  
-  @Field()
+  @Field({nullable: true})
   bustop?:    string
 
-  @Field()
+  @Field({nullable: true})
   road?:      string
 
-  @Field()
+  @Field({nullable: true})
   area?:      string
 
-  @Field()
+  @Field({nullable: true})
   city?:      string
 
-  @Field()
+  @Field({nullable: true})
   state?:     string
 
 
@@ -45,8 +45,14 @@ export class CreateUserInput{
   @Field()
   id:   string;
 
-  @Field(type => [UserRole])
-  role: UserRole[];
+  @Field()
+  password: String
+
+  @Field()
+  email: string
+  
+  @Field(type => [String])
+  role?: string[];
 
   @Field() 
   firstName?: string;
@@ -58,25 +64,28 @@ export class CreateUserInput{
   initials?: String
 
   @Field()
-  password: String
-
-  @Field()
   title?: string
   
   @Field()
   occupation?: string
 
   @Field(type => [String])
-  phone?: string[]
+  phone!: string[]
  
   @Field()
-  email: string
-  
-  @Field(type => Date)
-  created_at?: Date;
+  created_at: string;
 
-  @Field(type => AddressInput)
-  address?: AddressInput;
+  @Field()
+  houseno?:   number;
+
+  @Field()
+  creation_date?:  number
+
+
+
+/*
+  @Field(type => AddressInput,{nullable: true})
+  address?: AddressInput;*/
 
 
 }

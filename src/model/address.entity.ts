@@ -1,6 +1,6 @@
 import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from 'typeorm';
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
-import { User } from './user.model';
+import { User } from './user.entity';
 
 @ObjectType()
 @Entity()
@@ -11,7 +11,7 @@ export class Address extends BaseEntity{
     
     @Field(type => Int)
     @Column()
-    houseNo?:   number
+    houseno?:   number
 
     @Field()
     @Column({ length: 25, nullable: false })
@@ -41,7 +41,7 @@ export class Address extends BaseEntity{
     @Column({ length: 25, nullable: true })
     state?:     string
 
-    @OneToOne(type => User, user => user.address)
+  /*  @OneToOne(type => User)
     @JoinColumn()
-    user: User;
+    user: User;*/
 }

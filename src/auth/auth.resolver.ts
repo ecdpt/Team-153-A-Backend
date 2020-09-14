@@ -39,8 +39,9 @@ import { LoginInput } from './login-input.dto';
 import { ResGql } from '../shared/decorators/decorators';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
-import { User }          from '../users/models/user.model'
+import { User }          from '../model/user.entity'
 import { CreateUserInput }   from '../users/createuser-input';
+import { Address } from 'src/model/address.entity';
 //import { Context } from 'vm';
 //import { SignUpInputDto } from './sign-up-input.dto';
 
@@ -76,8 +77,9 @@ export class AuthResolver {
 
   @Mutation(returns => User)
   async createuser(
-    @Args('userInput'){ 
-      id,
+    @Args('userInput')
+      usr34
+     /* id,
       role,
       firstName,
       lastName,
@@ -87,23 +89,40 @@ export class AuthResolver {
       occupation,  
       phone,
       email,
-      created_at }: CreateUserInput, @ResGql() res) {
+      created_at,
+      address: addressInput*/
+     : CreateUserInput, @ResGql() res) {
         let usr = new User();
-        usr.email = email,
-        usr.firstName = firstName,
-        usr.role = role,
-        usr.lastName = lastName,
-        usr.initials = initials,
-        usr.title = title,
-        usr.occupation = occupation,
-        usr.phone = phone,
-        usr.email = email,
-        usr.created_at = created_at,
-        usr.password = await bcryptjs.hash(password, 10);
-
-
-
+        let address = new Address()
+        //usr.address = address;
+        usr.email = usr34.email,
+        usr.firstName = usr34.firstName,
+        usr.role = usr34.role,
+        usr.lastName = usr34.lastName,
+        usr.initials = usr34.initials,
+        usr.title = usr34.title,
+        usr.occupation = usr34.occupation,
+        usr.phone = usr34.phone,
+        usr.email = usr34.email,
+        usr.created_at = usr34.created_at,
+        usr.houseno = usr34.houseno,
+        usr.creation_date = usr34.creation_date
       
+       // usr.created_at = usr34.created_at,
+        usr.password = await bcryptjs.hash(usr34.password, 10);
+      /*  usr.address.area = usr34.address.area
+    
+        usr.address.bustop = usr34.address.bustop;
+        usr.address.city = usr34.address.city;
+        //usr.address.houseno = usr34.address.houseno;
+        
+        usr.address.road = usr34.address.road;
+        usr.address.state = usr34.address.state;
+        usr.address.street1 = usr34.address.street1;
+        usr.address.street2 = usr34.address.street2;*/
+       
+        console.log(usr)
+
         const user1 = await this.userService.createUser(usr);
 
         const jwt = this.jwt.sign({ id: user1.id });

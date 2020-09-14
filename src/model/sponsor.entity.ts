@@ -1,12 +1,12 @@
 import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne,
     OneToMany } from 'typeorm';
 import { Field, ID, Int, ObjectType, registerEnumType, Parent } from '@nestjs/graphql';
-import { Address } from '../../users/models/address.model';
+import { Address } from './address.entity';
 
 
 @ObjectType()
 @Entity()
-export class Illness extends BaseEntity{
+export class Sponsor extends BaseEntity{
 
 @Field()
 @PrimaryGeneratedColumn('uuid')
@@ -46,8 +46,8 @@ address?: Address
 
 @Field(type => Visit)
 @OneToMany(type => Patient, patient => patient.visits)
-visits?: [Visit]
-*/
+visits?: [Visit]*/
+
 @Field(type => Date)
 @Column(type => Date)
 @CreateDateColumn()

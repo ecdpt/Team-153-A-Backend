@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './models/user.model';
-import { Address }   from './models/address.model'
+import { User } from '../model/user.entity';
+import { Address }   from '../model/address.entity'
 
 @Injectable()
 export class UsersService {
@@ -39,6 +39,7 @@ export class UsersService {
     }
 
     async createUser(user: User): Promise<User> {
+       // console.log(user.address.houseno)
         return this.usersRepository.save(user)
     }
 
@@ -46,9 +47,16 @@ export class UsersService {
         return this.usersRepository.save(user)
     }
 
-    async deleteUserByDate(date: Date) {
+    async deleteUserByDate(date: string) {
         return await this.usersRepository.delete(
             { "created_at": date }
          );
     }
+
+    async deleteUserById(id: string) {
+        return await this.usersRepository.delete(
+            { "id": id}
+         );
+    }
+
 }

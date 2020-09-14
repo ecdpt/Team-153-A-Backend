@@ -1,12 +1,13 @@
+
 import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne,
     OneToMany } from 'typeorm';
 import { Field, ID, Int, ObjectType, registerEnumType, Parent } from '@nestjs/graphql';
-import { Address } from '../../users/models/address.model';
+import { Address } from './address.entity';
 
 
 @ObjectType()
 @Entity()
-export class Payment extends BaseEntity{
+export class Treatment extends BaseEntity{
 
 @Field()
 @PrimaryGeneratedColumn('uuid')

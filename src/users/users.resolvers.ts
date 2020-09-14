@@ -3,8 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './users.service';
 import { ResGql } from '../shared/decorators/decorators';
 import { AuthService }  from '../auth/auth.service';
-import { User } from './models/user.model';
-import { Address } from  './models/address.model';
+import { User } from '../model/user.entity';
+import { Address } from  '../model/address.entity';
 import { Resolver, Mutation, Args, Query, ResolveField, Parent } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
 import { createParamDecorator, ExecutionContext, UseGuards, Request } from '@nestjs/common';
@@ -44,22 +44,31 @@ export class UserResolver {
   async getUsers(): Promise<User[]> {
     return await this.usersService.getUsers()
   }
-  @ResolveField(() => Address)
+ /* @ResolveField(() => Address)
   async address(@Parent() user) {
     const { id } = user;
     console.log(user);
     return this.usersService.findById(id);
-  }
+  }*/
 
   
 
     @Mutation(returns => Number)
     async deleteByDate(
-      @Args('dateInput')  date: Date) {
+      @Args('dateInput')  date: string) {
           const result = await this.usersService.deleteUserByDate(date);
          console.log(result.affected);
          return result.affected;
       }
+
+      @Mutation(returns => Number)
+    async deleteById(
+      @Args('dateInput')  id: string) {
+          const result = await this.usersService.deleteUserById(id);
+         console.log(result.affected);
+         return result.affected;
+      }
+  
   
    /* @Mutation(returns => User)
     async signup(
