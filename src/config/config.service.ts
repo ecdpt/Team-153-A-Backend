@@ -41,7 +41,8 @@ class ConfigService {
       entities: [ 
         "dist/**/*.js",
       ],
-      synchronize: true
+      synchronize: true,
+      
 
     //  entities: ['**/*.entity{.ts,.js}'],
 
